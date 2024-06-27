@@ -1,4 +1,23 @@
+import sqlite3
 def main():
+    con = sqlite3.connect("tutorial.db")
+    cur = con.cursor()
+    # cur.execute("CREATE TABLE Users(UserId, Name, Email, BudgetId)")
+    res = cur.execute("SELECT Name, Email, BudgetId FROM Users")
+    
+    data = res.fetchall()
+
+    for item in data:
+        print(item)
+
+
+    # cur.execute("""
+    #     INSERT INTO Users VALUES
+    #     (2, 'Mariana', 'ldg4life90@yahoo.com', 1)
+    # """)
+    
+    # con.commit()
+
     # Create some categories
     food = Category("Food", "Money spent on food and dining")
     salary = Category("Salary", "Monthly salary")
@@ -37,8 +56,8 @@ def main():
     monthly_budget.add_expense(expense12)
     monthly_budget.add_income(income1)
 
-    debt1 = Debt(5000, "Credit Card", 0.0, loan, "2024-06-01", "2024-12-01")
-    debt2 = Debt(9765.81, "Credit Card", 0.0, loan, "2024-06-01", "2024-12-01")
+    debt1 = Debt(5000, "Wells FargoCredit Card", 0.0, loan, "2024-06-01", "2024-12-01")
+    debt2 = Debt(9765.81, "Bank of America Credit Card", 0.0, loan, "2024-06-01", "2024-12-01")
 
     monthly_budget.add_debt(debt1)
     monthly_budget.add_debt(debt2)
